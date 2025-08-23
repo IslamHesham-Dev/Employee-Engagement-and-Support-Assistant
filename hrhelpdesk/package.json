@@ -1,0 +1,42 @@
+{
+  "name": "hrhelpdesk",
+  "version": "1.0.0",
+  "description": "HRHelpDesk - AI-powered Employee Engagement & Support Assistant for iScore",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm run test",
+    "test:frontend": "cd frontend && npm run test",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "setup": "npm run docker:up && npm run db:setup",
+    "db:setup": "cd backend && npx prisma migrate dev && npx prisma db seed",
+    "db:reset": "cd backend && npx prisma migrate reset && npx prisma db seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/hrhelpdesk.git"
+  },
+  "keywords": [
+    "hr",
+    "employee-engagement",
+    "survey",
+    "chatbot",
+    "ai",
+    "nodejs",
+    "react",
+    "typescript"
+  ],
+  "author": "iScore",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
