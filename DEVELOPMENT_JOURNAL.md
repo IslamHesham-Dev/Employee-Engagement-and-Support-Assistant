@@ -348,5 +348,36 @@ Let's start by creating the proper project structure and getting your environmen
 3. **Create basic Express server**
 4. **Implement authentication endpoints**
 
-### **What You Need to Do Now**
-Please **start Docker Desktop** from your Windows Start menu and wait for it to fully load (Docker icon becomes solid in system tray). Once it's running, let me know and we'll continue!
+---
+
+## 📝 Entry #4 - Backend Authentication System
+**Date**: December 18, 2024  
+**Actions**: Started databases, created Express server with auth endpoints  
+
+### **What Was Done**
+1. Started PostgreSQL and Redis with `docker-compose up -d`
+2. Generated Prisma client and synced database schema
+3. Created Express server at `src/server.ts` with CORS, helmet, morgan
+4. Built authentication system:
+   - `POST /api/auth/register` - Create new users
+   - `POST /api/auth/login` - User login with JWT
+5. Created .gitignore file
+6. Server running on http://localhost:3000
+
+### **How to Test**
+1. Check server: `curl http://localhost:3000/health`
+2. Register user: `POST http://localhost:3000/api/auth/register` with:
+   ```json
+   {
+     "email": "test@iscore.com",
+     "password": "password123",
+     "firstName": "John",
+     "lastName": "Doe", 
+     "employeeId": "EMP001",
+     "role": "EMPLOYEE"
+   }
+   ```
+3. Login: `POST http://localhost:3000/api/auth/login` with email/password
+
+### **Next**
+Create frontend with login/register forms
