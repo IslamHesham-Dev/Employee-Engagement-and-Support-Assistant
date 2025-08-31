@@ -381,3 +381,31 @@ Let's start by creating the proper project structure and getting your environmen
 
 ### **Next**
 Create frontend with login/register forms
+
+---
+
+## 📝 Entry #5 - Frontend React Application
+**Date**: December 18, 2024  
+**Actions**: Created React frontend with authentication
+
+### **What Was Done**
+1. Created React TypeScript app with `create-react-app`
+2. Installed Material-UI, Redux Toolkit, React Router, Axios
+3. Built complete authentication system:
+   - Redux store with auth slice
+   - Login page with form validation
+   - Register page with role selection
+   - Dashboard with role-based features
+   - Header with logout functionality
+4. Applied iScore branding (purple/teal colors, clean design)
+5. Frontend running on http://localhost:3000
+
+### **How to Test**
+1. Visit: http://localhost:3000 (redirects to login)
+2. Register new user with any role (EMPLOYEE, HR_MANAGER, etc.)
+3. Login with registered credentials
+4. Dashboard shows role-based features
+5. Logout and login again to test persistence
+
+### **Next**
+Test full authentication flow between frontend and backend

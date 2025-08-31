@@ -73,10 +73,7 @@ model Department {
 }
 
 enum UserRole {
-  ADMIN
-  SUPER_ADMIN
-  HR_MANAGER
-  HR_COORDINATOR
+  HR
   EMPLOYEE
 }
 

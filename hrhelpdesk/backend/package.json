@@ -4,7 +4,7 @@
   "description": "HRHelpDesk Backend API - Employee Engagement & Support Assistant for iScore",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "npx tsx watch src/server.ts",
     "build": "tsup src/server.ts --format cjs --target node18",
     "start": "node dist/server.js",
     "test": "vitest",
