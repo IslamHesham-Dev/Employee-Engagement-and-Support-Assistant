@@ -1,8 +1,8 @@
-# 📊 Survey Data Analysis Guide for HR Analytics Dashboard
+# Survey Data Analysis Guide for HR Analytics Dashboard
 
-## 🎯 **Overview**
+## **Overview**
 
-This document describes the types of survey questions and response data that your colleague will be working with to build the HR Analytics Dashboard. The data comes from employee engagement surveys with structured rating-scale questions.
+This document describes the types of survey questions and response data that we will be working with to build the HR Analytics Dashboard. The data comes from employee engagement surveys with structured rating-scale questions.
 
 ## 📋 **Survey Categories & Question Types**
 
