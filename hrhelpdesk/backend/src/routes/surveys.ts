@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+import { authMiddleware } from '../middleware/authMiddleware';
 import {
     getSurveyTemplates,
     createSurveyFromTemplate,
@@ -7,27 +8,30 @@ import {
     publishSurvey,
     unpublishSurvey,
     submitSurveyResponse,
-    getSurveyResults
+    getSurveyResults,
+    getSurveyResponseDetails,
+    deleteSurvey
 } from '../controllers/surveyController';
-import { authMiddleware } from '../middleware/authMiddleware';
 
-export const surveyRoutes = Router();
+const router = express.Router();
 
-// All survey routes require authentication
-surveyRoutes.use(authMiddleware);
+// Public routes (no auth required)
+router.get('/templates', getSurveyTemplates);
+router.get('/published', getPublishedSurveys);
 
-// Survey templates (HR only)
-surveyRoutes.get('/templates', getSurveyTemplates);
+// Protected routes (auth required)
+router.use(authMiddleware);
 
-// Survey management (HR only)
-surveyRoutes.post('/', createSurveyFromTemplate);
-surveyRoutes.get('/all', getAllSurveys);
-surveyRoutes.put('/:surveyId/publish', publishSurvey);
-surveyRoutes.put('/:surveyId/unpublish', unpublishSurvey);
-surveyRoutes.get('/:surveyId/results', getSurveyResults);
+// HR-only routes
+router.get('/all', getAllSurveys);
+router.post('/create', createSurveyFromTemplate);
+router.put('/:surveyId/publish', publishSurvey);
+router.put('/:surveyId/unpublish', unpublishSurvey);
+router.get('/:surveyId/results', getSurveyResults);
+router.get('/:surveyId/responses/:responseId', getSurveyResponseDetails);
+router.delete('/:surveyId', deleteSurvey);
 
-// Published surveys (for employees)
-surveyRoutes.get('/published', getPublishedSurveys);
+// Employee routes
+router.post('/:surveyId/responses', submitSurveyResponse);
 
-// Survey responses (employees)
-surveyRoutes.post('/:surveyId/responses', submitSurveyResponse);
+export default router;

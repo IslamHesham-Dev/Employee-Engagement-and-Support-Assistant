@@ -499,6 +499,7 @@ model EmailLog {
   sentAt    DateTime @default(now())
   openedAt  DateTime?
   clickedAt DateTime?
+  metadata  Json?    // Store additional data like SendGrid response, errors, etc.
   
   // Timestamps
   createdAt DateTime @default(now())

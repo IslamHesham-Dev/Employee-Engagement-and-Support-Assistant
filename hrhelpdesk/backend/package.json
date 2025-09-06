@@ -4,7 +4,7 @@
   "description": "HRHelpDesk Backend API - Employee Engagement & Support Assistant for iScore",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "npx tsx watch src/server.ts",
+    "dev": "cross-env NODE_ENV=development DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hrhelpdesk npx tsx watch src/server.ts",
     "build": "tsup src/server.ts --format cjs --target node18",
     "start": "node dist/server.js",
     "test": "vitest",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@prisma/client": "^5.7.1",
     "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.6.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",
@@ -50,6 +51,7 @@
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
+    "cross-env": "^10.0.0",
     "eslint": "^8.55.0",
     "prisma": "^5.7.1",
     "supertest": "^6.3.3",

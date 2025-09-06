@@ -17,7 +17,7 @@ export interface Employee {
         code: string;
     };
     createdAt: string;
-    lastLoginAt?: string;
+    lastLogin?: string;
 }
 
 interface UserState {

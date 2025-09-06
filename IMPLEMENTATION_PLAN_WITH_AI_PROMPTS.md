@@ -36,7 +36,7 @@ I'm working on a HRHelpDesk application for employee engagement and surveys. I n
 - Backend: Node.js + Express + TypeScript + Prisma ORM
 - Database: PostgreSQL with comprehensive schema
 - Current auth: JWT-based with HR and EMPLOYEE roles
-- SendGrid API Key: SG.jxI4CJSHQail953UGe_i9Q.482EbJQjjFQkksPCvFHLFBo-84YeC89GB59iF_DHHu8
+- SendGrid API Key: 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
 - From Email: islamhk1234@gmail.com
 
 **Current Database Schema Includes:**

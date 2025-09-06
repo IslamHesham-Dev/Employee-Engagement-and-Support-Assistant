@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import emailService from '../services/emailService';
+import logger from '../utils/logger';
 
 const prisma = new PrismaClient();
 
@@ -11,7 +13,10 @@ export const createEmployee = async (req: Request, res: Response) => {
         const userId = (req as any).userId;
 
         // Verify user is HR
-        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated' });
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId as string } });
         if (!user || user.role !== 'HR') {
             return res.status(403).json({ error: 'Only HR can create employee accounts' });
         }
@@ -61,6 +66,22 @@ export const createEmployee = async (req: Request, res: Response) => {
         });
 
         console.log('Employee created successfully:', employee.email);
+
+        // Send welcome email to new employee
+        try {
+            await emailService.sendWelcomeEmail(
+                employee.id,
+                employee.email,
+                `${employee.firstName} ${employee.lastName}`,
+                employee.role
+            );
+        } catch (error) {
+            logger.error('Failed to send welcome email', {
+                employeeId: employee.id,
+                error: error instanceof Error ? error.message : 'Unknown error'
+            });
+        }
+
         res.status(201).json({ message: 'Employee created successfully', employee });
     } catch (error) {
         console.error('Create employee error:', error);
@@ -74,7 +95,10 @@ export const getAllEmployees = async (req: Request, res: Response) => {
         const userId = (req as any).userId;
 
         // Verify user is HR
-        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated' });
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId as string } });
         if (!user || user.role !== 'HR') {
             return res.status(403).json({ error: 'Only HR can view all employees' });
         }
@@ -99,7 +123,7 @@ export const getAllEmployees = async (req: Request, res: Response) => {
                     }
                 },
                 createdAt: true,
-                lastLoginAt: true
+                lastLogin: true
             },
             orderBy: {
                 createdAt: 'desc'
@@ -121,12 +145,18 @@ export const updateEmployee = async (req: Request, res: Response) => {
         const userId = (req as any).userId;
 
         // Verify user is HR
-        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated' });
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId as string } });
         if (!user || user.role !== 'HR') {
             return res.status(403).json({ error: 'Only HR can update employees' });
         }
 
         // Check if employee exists
+        if (!employeeId) {
+            return res.status(400).json({ error: 'Employee ID is required' });
+        }
         const employee = await prisma.user.findUnique({ where: { id: employeeId } });
         if (!employee) {
             return res.status(404).json({ error: 'Employee not found' });
@@ -180,12 +210,18 @@ export const deleteEmployee = async (req: Request, res: Response) => {
         const userId = (req as any).userId;
 
         // Verify user is HR
-        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated' });
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId as string } });
         if (!user || user.role !== 'HR') {
             return res.status(403).json({ error: 'Only HR can delete employees' });
         }
 
         // Check if employee exists
+        if (!employeeId) {
+            return res.status(400).json({ error: 'Employee ID is required' });
+        }
         const employee = await prisma.user.findUnique({ where: { id: employeeId } });
         if (!employee) {
             return res.status(404).json({ error: 'Employee not found' });

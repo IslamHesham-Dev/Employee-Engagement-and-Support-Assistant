@@ -58,7 +58,6 @@ const Dashboard: React.FC = () => {
                         <Tab label="Employee Management" />
                         <Tab label="Survey Management" />
                         <Tab label="Analytics" />
-                        <Tab label="Chatbot" />
                     </Tabs>
                 </Box>
 
@@ -80,18 +79,6 @@ const Dashboard: React.FC = () => {
                         </CardContent>
                     </Card>
                 </TabPanel>
-                <TabPanel value={value} index={3}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" gutterBottom>
-                                AI Chatbot Management
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Chatbot configuration and training will be available here.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </TabPanel>
             </Box>
         );
     }
@@ -109,50 +96,11 @@ const Dashboard: React.FC = () => {
             <Box sx={{ borderBottom: 1, borderColor: 'divider', mt: 3 }}>
                 <Tabs value={value} onChange={handleChange} aria-label="Employee dashboard tabs">
                     <Tab label="Surveys" />
-                    <Tab label="HR Chatbot" />
-                    <Tab label="Policies" />
-                    <Tab label="Support" />
                 </Tabs>
             </Box>
 
             <TabPanel value={value} index={0}>
                 <SurveyList />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            HR Chatbot
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            AI-powered chatbot for HR questions will be available here.
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            Company Policies
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Access to company policies and procedures will be available here.
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                <Card>
-                    <CardContent>
-                        <Typography variant="h6" gutterBottom>
-                            HR Support
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Submit and track HR support requests here.
-                        </Typography>
-                    </CardContent>
-                </Card>
             </TabPanel>
         </Box>
     );
