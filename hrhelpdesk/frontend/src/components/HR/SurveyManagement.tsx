@@ -23,9 +23,7 @@ import {
     Paper,
     Chip,
     IconButton,
-    Alert,
-    FormControlLabel,
-    Switch
+    Alert
 } from '@mui/material';
 import { Add, Launch, BarChart, Poll } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -149,6 +147,11 @@ const SurveyManagement: React.FC = () => {
                                         <Typography variant="body2" color="text.secondary">
                                             {survey.description}
                                         </Typography>
+                                        {survey.status === 'PUBLISHED' && (
+                                            <Typography variant="body2" color="primary.main" sx={{ fontWeight: 'medium', mt: 0.5 }}>
+                                                ⏰ Valid for one week
+                                            </Typography>
+                                        )}
                                     </TableCell>
                                     <TableCell>
                                         <Chip

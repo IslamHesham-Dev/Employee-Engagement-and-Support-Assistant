@@ -8,16 +8,19 @@ export interface SurveyTemplate {
     title: string;
     description: string;
     category: string;
+    estimatedTime: string;
     questions: TemplateQuestion[];
 }
 
 export interface TemplateQuestion {
+    id: string;
     text: string;
-    type: 'RATING_SCALE' | 'MULTIPLE_CHOICE' | 'TEXT';
+    type: 'RATING_SCALE' | 'MULTIPLE_CHOICE' | 'TEXT' | 'TEXTAREA' | 'CHECKBOX' | 'YES_NO' | 'DATE' | 'NUMBER';
     required: boolean;
     options?: string[];
     minValue?: number;
     maxValue?: number;
+    order: number;
 }
 
 export interface Survey {
@@ -41,7 +44,7 @@ export interface Survey {
 export interface SurveyQuestion {
     id: string;
     text: string;
-    type: 'RATING_SCALE' | 'MULTIPLE_CHOICE' | 'TEXT';
+    type: 'RATING_SCALE' | 'MULTIPLE_CHOICE' | 'TEXT' | 'TEXTAREA' | 'CHECKBOX' | 'YES_NO' | 'DATE' | 'NUMBER';
     required: boolean;
     order: number;
     options: string[];

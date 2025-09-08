@@ -446,3 +446,4 @@ echo ".env" >> .gitignore
 **Congratulations!** You've successfully set up the AI Chatbot service for your HRHelpDesk application. The chatbot is now ready to provide intelligent support for your employees' HR-related inquiries.
 
 For any questions or issues, refer to the troubleshooting section or create an issue in the project repository.
+

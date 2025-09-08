@@ -1,0 +1,24 @@
+{
+    "name": "hr-dashboard-test-scripts",
+    "version": "1.0.0",
+    "description": "Test scripts for HR dashboard survey functionality",
+    "main": "run-test-suite.js",
+    "scripts": {
+        "create-accounts": "node create-test-accounts.js",
+        "participate": "node survey-participation.js",
+        "test": "node run-test-suite.js",
+        "full-test": "npm run test"
+    },
+    "dependencies": {
+        "axios": "^1.6.0"
+    },
+    "keywords": [
+        "hr",
+        "dashboard",
+        "survey",
+        "testing",
+        "automation"
+    ],
+    "author": "HR Dashboard Team",
+    "license": "MIT"
+}

@@ -1,0 +1,67 @@
+{
+  "successful": 10,
+  "failed": 0,
+  "alreadyResponded": 0,
+  "details": [
+    {
+      "account": "john.doe@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rdlu000b11x7twbjiht4"
+    },
+    {
+      "account": "jane.smith@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rfvq000u11x7cqymy92e"
+    },
+    {
+      "account": "mike.johnson@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rh9j001d11x7oqnewlnu"
+    },
+    {
+      "account": "sarah.williams@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rio9001w11x7zsuk56cz"
+    },
+    {
+      "account": "david.brown@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rk43002f11x7mp8twjoj"
+    },
+    {
+      "account": "lisa.davis@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rljd002y11x7kt1hkvhi"
+    },
+    {
+      "account": "tom.wilson@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rn0v003h11x7m4u0xpy5"
+    },
+    {
+      "account": "emma.garcia@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rojp004011x7z7s1jae0"
+    },
+    {
+      "account": "chris.martinez@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rpzb004j11x7g4tqqc2c"
+    },
+    {
+      "account": "anna.anderson@test.com",
+      "survey": "Employee Satisfaction & Engagement Survey",
+      "status": "success",
+      "responseId": "cmfa2rrh2005211x7omuy3997"
+    }
+  ]
+}

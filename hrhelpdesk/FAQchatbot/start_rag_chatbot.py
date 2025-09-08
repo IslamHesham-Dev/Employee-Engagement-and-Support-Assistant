@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-AI Chatbot Service Startup Script
-This script starts the Flask-based AI chatbot service for HRHelpDesk
+RAG-based AI Chatbot Service Startup Script
+This script starts the Flask-based AI chatbot service with OpenAI API and RAG pipeline
 """
 
 import os
@@ -9,6 +9,10 @@ import sys
 import subprocess
 import time
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def check_python_version():
@@ -24,15 +28,28 @@ def check_python_version():
 def check_dependencies():
     """Check if required dependencies are installed"""
     required_packages = [
-        'flask', 'torch', 'transformers', 'psycopg2',
-        'deep_translator', 'pyarabic', 'numpy'
+        'flask', 'openai', 'sentence_transformers', 'faiss', 'psycopg2',
+        'deep_translator', 'pyarabic', 'numpy', 'requests', 'beautifulsoup4'
     ]
 
     missing_packages = []
 
     for package in required_packages:
         try:
-            __import__(package.replace('-', '_'))
+            if package == 'sentence_transformers':
+                __import__('sentence_transformers')
+            elif package == 'faiss':
+                __import__('faiss')
+            elif package == 'psycopg2':
+                __import__('psycopg2')
+            elif package == 'deep_translator':
+                __import__('deep_translator')
+            elif package == 'pyarabic':
+                __import__('pyarabic')
+            elif package == 'beautifulsoup4':
+                __import__('bs4')
+            else:
+                __import__(package.replace('-', '_'))
             print(f"✅ {package}")
         except ImportError:
             missing_packages.append(package)
@@ -46,32 +63,26 @@ def check_dependencies():
     return True
 
 
-def check_model_files():
-    """Check if AI model files exist"""
-    model_path = Path("FAQ-Model")
-    required_files = ["config.json", "pytorch_model.bin", "tokenizer.json"]
-
-    if not model_path.exists():
-        print("❌ FAQ-Model directory not found")
+def check_openai_key():
+    """Check if OpenAI API key is available"""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        print("❌ OpenAI API key not found in environment variables")
+        print("Please set OPENAI_API_KEY environment variable")
         return False
 
-    missing_files = []
-    for file in required_files:
-        if not (model_path / file).exists():
-            missing_files.append(file)
-
-    if missing_files:
-        print(f"❌ Missing model files: {', '.join(missing_files)}")
+    if not api_key.startswith("sk-"):
+        print("❌ Invalid OpenAI API key format")
         return False
 
-    print("✅ AI model files found")
+    print("✅ OpenAI API key found")
     return True
 
 
 def check_database_connection():
     """Test database connection"""
     try:
-        from run import get_db_connection
+        from chatbot_service import get_db_connection
         conn = get_db_connection()
         if conn:
             conn.close()
@@ -82,6 +93,28 @@ def check_database_connection():
             return False
     except Exception as e:
         print(f"❌ Database connection error: {e}")
+        return False
+
+
+def test_rag_pipeline():
+    """Test RAG pipeline initialization"""
+    try:
+        from rag_pipeline import get_rag_pipeline
+        print("🔄 Initializing RAG pipeline...")
+        rag = get_rag_pipeline()
+        print("✅ RAG pipeline initialized successfully")
+
+        # Test with a simple question
+        print("🧪 Testing RAG pipeline with sample question...")
+        test_result = rag.answer("What are the working hours in Egypt?")
+        if test_result and test_result.get('answer'):
+            print("✅ RAG pipeline test successful")
+            return True
+        else:
+            print("❌ RAG pipeline test failed")
+            return False
+    except Exception as e:
+        print(f"❌ RAG pipeline error: {e}")
         return False
 
 
@@ -100,15 +133,15 @@ def install_dependencies():
 
 def start_service():
     """Start the Flask service"""
-    print("\n🚀 Starting AI Chatbot Service...")
+    print("\n🚀 Starting RAG-based AI Chatbot Service...")
 
     # Set environment variables
-    os.environ['FLASK_APP'] = 'run.py'
+    os.environ['FLASK_APP'] = 'chatbot_service.py'
     os.environ['FLASK_ENV'] = 'development'
 
     try:
         # Import and run the Flask app
-        from run import app
+        from chatbot_service import app
         print("✅ Service imported successfully")
         print("📍 Service will be available at: http://localhost:5000")
         print("🔗 Health check: http://localhost:5000/health")
@@ -131,8 +164,8 @@ def start_service():
 
 def main():
     """Main startup function"""
-    print("🤖 HRHelpDesk AI Chatbot Service Startup")
-    print("=" * 50)
+    print("🤖 HRHelpDesk RAG-based AI Chatbot Service Startup")
+    print("=" * 60)
 
     # Check Python version
     if not check_python_version():
@@ -148,17 +181,25 @@ def main():
         if not check_dependencies():
             sys.exit(1)
 
-    # Check model files
-    print("\n🤖 Checking AI model files...")
-    if not check_model_files():
-        print("❌ Please ensure the FAQ-Model directory contains all required files")
+    # Check OpenAI API key
+    print("\n🔑 Checking OpenAI API key...")
+    if not check_openai_key():
+        print("❌ Please set your OpenAI API key in environment variables")
+        print("   You can set it by running: set OPENAI_API_KEY=your_key_here")
         sys.exit(1)
 
     # Check database connection
     print("\n🗄️  Checking database connection...")
     if not check_database_connection():
-        print("❌ Please check your database configuration in .env file")
+        print("❌ Please check your database configuration")
         print("   Make sure PostgreSQL is running and accessible")
+        sys.exit(1)
+
+    # Test RAG pipeline
+    print("\n🧠 Testing RAG pipeline...")
+    if not test_rag_pipeline():
+        print("❌ RAG pipeline initialization failed")
+        print("   This might be due to network issues or OpenAI API problems")
         sys.exit(1)
 
     # Start the service

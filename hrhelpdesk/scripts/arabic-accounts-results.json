@@ -1,0 +1,89 @@
+{
+  "timestamp": "2025-09-07T19:38:59.229Z",
+  "total": 10,
+  "successful": 0,
+  "failed": 10,
+  "createdAccounts": [],
+  "failedAccounts": [
+    {
+      "firstName": "أحمد",
+      "lastName": "محمد",
+      "email": "ahmed.mohamed@test.com",
+      "employeeId": "EMP17572739271270",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "فاطمة",
+      "lastName": "علي",
+      "email": "fatima.ali@test.com",
+      "employeeId": "EMP17572739283871",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "محمد",
+      "lastName": "حسن",
+      "email": "mohamed.hassan@test.com",
+      "employeeId": "EMP17572739296172",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "عائشة",
+      "lastName": "أحمد",
+      "email": "aisha.ahmed@test.com",
+      "employeeId": "EMP17572739308943",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "عمر",
+      "lastName": "إبراهيم",
+      "email": "omar.ibrahim@test.com",
+      "employeeId": "EMP17572739320994",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "زينب",
+      "lastName": "محمد",
+      "email": "zainab.mohamed@test.com",
+      "employeeId": "EMP17572739333135",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "يوسف",
+      "lastName": "علي",
+      "email": "youssef.ali@test.com",
+      "employeeId": "EMP17572739344566",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "مريم",
+      "lastName": "حسن",
+      "email": "mariam.hassan@test.com",
+      "employeeId": "EMP17572739355337",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "خالد",
+      "lastName": "أحمد",
+      "email": "khalid.ahmed@test.com",
+      "employeeId": "EMP17572739367868",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    },
+    {
+      "firstName": "نور",
+      "lastName": "إبراهيم",
+      "email": "nour.ibrahim@test.com",
+      "employeeId": "EMP17572739379599",
+      "error": "Request failed with status code 500",
+      "status": "failed"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
     unpublishSurvey,
     submitSurveyResponse,
     getSurveyResults,
+    getDashboardAnalytics,
     getSurveyResponseDetails,
     deleteSurvey
 } from '../controllers/surveyController';
@@ -29,6 +30,7 @@ router.put('/:surveyId/publish', publishSurvey);
 router.put('/:surveyId/unpublish', unpublishSurvey);
 router.get('/:surveyId/results', getSurveyResults);
 router.get('/:surveyId/responses/:responseId', getSurveyResponseDetails);
+router.get('/analytics/dashboard', getDashboardAnalytics);
 router.delete('/:surveyId', deleteSurvey);
 
 // Employee routes

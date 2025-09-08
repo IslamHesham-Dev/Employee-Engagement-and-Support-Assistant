@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Typography, Tabs, Tab, Card, CardContent } from '@mui/material';
+import { Box, Typography, Tabs, Tab, Card, CardContent, Fab } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import EmployeeManagement from '../components/HR/EmployeeManagement';
 import SurveyManagement from '../components/HR/SurveyManagement';
+import SurveyInsights from '../components/HR/SurveyInsights';
 import SurveyList from '../components/Employee/SurveyList';
 
 interface TabPanelProps {
@@ -45,7 +46,7 @@ const Dashboard: React.FC = () => {
 
     if (user?.role === 'HR') {
         return (
-            <Box sx={{ p: 3 }}>
+            <Box sx={{ p: 3, position: 'relative' }}>
                 <Typography variant="h4" gutterBottom>
                     Welcome, {user?.firstName}!
                 </Typography>
@@ -68,24 +69,16 @@ const Dashboard: React.FC = () => {
                     <SurveyManagement />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" gutterBottom>
-                                Analytics Dashboard
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Survey analytics and insights will be displayed here.
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <SurveyInsights />
                 </TabPanel>
+
             </Box>
         );
     }
 
     // Employee Dashboard
     return (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3, position: 'relative' }}>
             <Typography variant="h4" gutterBottom>
                 Welcome, {user?.firstName}!
             </Typography>
@@ -102,6 +95,7 @@ const Dashboard: React.FC = () => {
             <TabPanel value={value} index={0}>
                 <SurveyList />
             </TabPanel>
+
         </Box>
     );
 };

@@ -199,9 +199,17 @@ export const publishSurvey = async (req: Request, res: Response) => {
             return res.status(403).json({ error: 'Only HR can publish surveys' });
         }
 
+        // Set start date to now and end date to one week from now
+        const now = new Date();
+        const oneWeekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+
         const survey = await prisma.survey.update({
             where: { id: surveyId },
-            data: { status: 'ACTIVE' },
+            data: {
+                status: 'ACTIVE',
+                startDate: now,
+                endDate: oneWeekFromNow
+            },
             include: {
                 questions: {
                     orderBy: { order: 'asc' }
@@ -588,6 +596,120 @@ export const getSurveyResults = async (req: Request, res: Response) => {
     } catch (error) {
         console.error('Get survey results error:', error);
         res.status(500).json({ error: 'Failed to fetch survey results' });
+    }
+};
+
+// Get dashboard analytics (HR only)
+export const getDashboardAnalytics = async (req: Request, res: Response) => {
+    try {
+        const userId = (req as any).userId;
+
+        // Verify user is HR
+        if (!userId) {
+            return res.status(401).json({ error: 'User not authenticated' });
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId as string } });
+        if (!user || user.role !== 'HR') {
+            return res.status(403).json({ error: 'Only HR can view dashboard analytics' });
+        }
+
+        // Get all active surveys with their responses
+        const surveys = await prisma.survey.findMany({
+            where: {
+                status: 'ACTIVE',
+                questions: {
+                    some: {}
+                }
+            },
+            include: {
+                questions: {
+                    include: {
+                        responses: true
+                    },
+                    orderBy: { order: 'asc' }
+                },
+                responses: {
+                    where: {
+                        isComplete: true
+                    },
+                    include: {
+                        user: {
+                            select: {
+                                id: true,
+                                firstName: true,
+                                lastName: true,
+                                email: true,
+                                department: true
+                            }
+                        }
+                    }
+                }
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+
+        // Process data for dashboard
+        const analytics = {
+            totalResponses: 0,
+            totalSurveys: surveys.length,
+            questionAnalytics: [] as any[],
+            departmentBreakdown: {} as Record<string, number>,
+            recentResponses: [] as any[]
+        };
+
+        surveys.forEach(survey => {
+            analytics.totalResponses += survey.responses.length;
+
+            // Process each question
+            survey.questions.forEach(question => {
+                const responses = question.responses;
+                const responseCounts: Record<string, number> = {};
+
+                responses.forEach(response => {
+                    const value = response.value;
+                    responseCounts[value] = (responseCounts[value] || 0) + 1;
+                });
+
+                analytics.questionAnalytics.push({
+                    questionId: question.id,
+                    questionText: question.text,
+                    questionOrder: question.order,
+                    responseCounts,
+                    totalResponses: responses.length
+                });
+            });
+
+            // Department breakdown
+            survey.responses.forEach(response => {
+                if (response.user?.department) {
+                    const dept = response.user.department.name;
+                    analytics.departmentBreakdown[dept] = (analytics.departmentBreakdown[dept] || 0) + 1;
+                }
+            });
+
+            // Recent responses (last 10)
+            survey.responses.slice(0, 10).forEach(response => {
+                analytics.recentResponses.push({
+                    id: response.id,
+                    userName: response.user ? `${response.user.firstName} ${response.user.lastName}` : 'Anonymous',
+                    department: response.user?.department?.name || 'Unknown',
+                    completedAt: response.completedAt,
+                    surveyTitle: survey.title
+                });
+            });
+        });
+
+        // Sort recent responses by completion date
+        analytics.recentResponses.sort((a, b) =>
+            new Date(b.completedAt || 0).getTime() - new Date(a.completedAt || 0).getTime()
+        );
+
+        res.json(analytics);
+    } catch (error) {
+        console.error('Get dashboard analytics error:', error);
+        res.status(500).json({ error: 'Failed to fetch dashboard analytics' });
     }
 };
 

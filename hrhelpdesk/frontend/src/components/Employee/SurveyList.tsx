@@ -15,7 +15,9 @@ import {
     Rating,
     Alert,
     Divider,
-    Paper
+    Paper,
+    Checkbox,
+    TextField
 } from '@mui/material';
 import { Assignment, Star } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +26,7 @@ import { fetchPublishedSurveys, submitSurveyResponse } from '../../store/surveyS
 
 const SurveyList: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { publishedSurveys, loading, error } = useSelector((state: RootState) => state.survey);
+    const { publishedSurveys, error } = useSelector((state: RootState) => state.survey);
 
     const [selectedSurvey, setSelectedSurvey] = useState<any>(null);
     const [responses, setResponses] = useState<Record<string, any>>({});
@@ -82,9 +84,14 @@ const SurveyList: React.FC = () => {
         setSubmitSuccess(false);
     };
 
-    const isComplete = selectedSurvey?.questions.every((q: any) =>
-        responses[q.id] !== undefined && responses[q.id] !== ''
-    );
+    const isComplete = selectedSurvey?.questions.every((q: any) => {
+        if (!q.required) return true; // Optional questions are always complete
+        const response = responses[q.id];
+        if (q.type === 'CHECKBOX') {
+            return Array.isArray(response) && response.length > 0;
+        }
+        return response !== undefined && response !== '';
+    });
 
     const renderQuestionInput = (question: any) => {
         switch (question.type) {
@@ -104,10 +111,10 @@ const SurveyList: React.FC = () => {
                         />
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
                             <Typography variant="caption" color="text.secondary">
-                                {question.minValue} - Worst
+                                1 - Strongly Disagree
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
-                                {question.maxValue} - Best
+                                5 - Strongly Agree
                             </Typography>
                         </Box>
                     </Box>
@@ -119,7 +126,7 @@ const SurveyList: React.FC = () => {
                         onChange={(e) => handleResponseChange(question.id, e.target.value)}
                         sx={{ mt: 2 }}
                     >
-                        {question.options.map((option: string, index: number) => (
+                        {question.options?.map((option: string, index: number) => (
                             <FormControlLabel
                                 key={index}
                                 value={option}
@@ -128,6 +135,42 @@ const SurveyList: React.FC = () => {
                             />
                         ))}
                     </RadioGroup>
+                );
+            case 'CHECKBOX':
+                return (
+                    <Box sx={{ mt: 2 }}>
+                        {question.options?.map((option: string, index: number) => (
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        checked={(responses[question.id] || []).includes(option)}
+                                        onChange={(e) => {
+                                            const currentValues = responses[question.id] || [];
+                                            if (e.target.checked) {
+                                                handleResponseChange(question.id, [...currentValues, option]);
+                                            } else {
+                                                handleResponseChange(question.id, currentValues.filter((v: string) => v !== option));
+                                            }
+                                        }}
+                                    />
+                                }
+                                label={option}
+                            />
+                        ))}
+                    </Box>
+                );
+            case 'TEXTAREA':
+                return (
+                    <TextField
+                        multiline
+                        rows={4}
+                        fullWidth
+                        value={responses[question.id] || ''}
+                        onChange={(e) => handleResponseChange(question.id, e.target.value)}
+                        placeholder="Please enter your response..."
+                        sx={{ mt: 2 }}
+                    />
                 );
             default:
                 return null;
@@ -143,8 +186,7 @@ const SurveyList: React.FC = () => {
                         Thank You!
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        Your survey response has been submitted successfully.
-                        Your feedback helps us improve the workplace experience.
+                        Thank you for completing the survey! Your feedback is invaluable and will help us improve our workplace, support your growth, and enhance your overall experience at iscore.
                     </Typography>
                 </DialogContent>
                 <DialogActions>
@@ -194,8 +236,11 @@ const SurveyList: React.FC = () => {
                                 <Typography variant="body2" color="text.secondary" paragraph>
                                     {survey.description}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                                     {survey.questions.length} questions • Estimated time: {Math.ceil(survey.questions.length * 0.5)} minutes
+                                </Typography>
+                                <Typography variant="body2" color="primary.main" sx={{ mb: 2, fontWeight: 'medium' }}>
+                                    ⏰ Valid for one week
                                 </Typography>
                                 <Button
                                     variant="contained"

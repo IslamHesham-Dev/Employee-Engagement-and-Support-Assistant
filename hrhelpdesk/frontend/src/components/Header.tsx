@@ -66,7 +66,7 @@ const Header: React.FC = () => {
                 </Toolbar>
             </AppBar>
 
-            {/* Floating AI Chatbot - Only show when authenticated */}
+            {/* AI Assistant - Only show when authenticated */}
             {isAuthenticated && <AIChatbot />}
         </>
     );

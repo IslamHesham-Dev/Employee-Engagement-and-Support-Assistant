@@ -1,0 +1,92 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r0yd000011x7x4pbofwm",
+    "employeeId": "EMP1757272627090"
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r1vi000111x7famdvk5k",
+    "employeeId": "EMP1757272628285"
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Johnson",
+    "email": "mike.johnson@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r2ry000211x7bb1xxr8n",
+    "employeeId": "EMP1757272629452"
+  },
+  {
+    "firstName": "Sarah",
+    "lastName": "Williams",
+    "email": "sarah.williams@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r3pn000311x73x9dgxpo",
+    "employeeId": "EMP1757272630665"
+  },
+  {
+    "firstName": "David",
+    "lastName": "Brown",
+    "email": "david.brown@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r4ln000411x742xxlg01",
+    "employeeId": "EMP1757272631817"
+  },
+  {
+    "firstName": "Lisa",
+    "lastName": "Davis",
+    "email": "lisa.davis@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r5jv000511x7fvge3m9g",
+    "employeeId": "EMP1757272633049"
+  },
+  {
+    "firstName": "Tom",
+    "lastName": "Wilson",
+    "email": "tom.wilson@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r6f1000611x7883q9z2q",
+    "employeeId": "EMP1757272634171"
+  },
+  {
+    "firstName": "Emma",
+    "lastName": "Garcia",
+    "email": "emma.garcia@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r7ck000711x78jbrixs1",
+    "employeeId": "EMP1757272635378"
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Martinez",
+    "email": "chris.martinez@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2r931000811x7gtvd60dd",
+    "employeeId": "EMP1757272637627"
+  },
+  {
+    "firstName": "Anna",
+    "lastName": "Anderson",
+    "email": "anna.anderson@test.com",
+    "password": "password123",
+    "role": "EMPLOYEE",
+    "id": "cmfa2rb0m000911x7ghx1vdce",
+    "employeeId": "EMP1757272640132"
+  }
+]
