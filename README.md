@@ -207,18 +207,33 @@ python chatbot_service.py
 ## 📱 Application Showcase
 
 ### 🎥 Demo Video
-[Watch the Demo Video](https://your-demo-video-link.com) - *Coming Soon*
+[Watch the Demo Video](https://drive.google.com/file/d/1fH1bbWuGLnaD7hiMyPG3Wq7o9PYBZV3R/view?usp=sharing) - *Coming Soon*
 
 ### 🖼️ Screenshots
 
-#### Dashboard Overview
-![Dashboard](https://via.placeholder.com/800x400/5A2D82/FFFFFF?text=HR+Dashboard)
+#### Login Interface
+![Login](login.png)
+*Clean and modern login interface with iScore branding*
+
+#### Employee Management Dashboard
+![Dashboard](dashboard.png)
+*Comprehensive HR dashboard with employee management, survey management, and analytics tabs*
+
+#### Add New Employee Modal
+![Add Employee](Add%20Employee.png)
+*Streamlined employee creation interface with required fields and validation*
 
 #### AI Chatbot Interface
-![Chatbot](https://via.placeholder.com/800x400/7B4397/FFFFFF?text=AI+Chatbot)
+![Chatbot](Chatbot.PNG)
+*AI-powered chatbot with Egypt Labour Law knowledge, confidence scoring, and source citations*
 
-#### Survey Analytics
-![Analytics](https://via.placeholder.com/800x400/00B59D/FFFFFF?text=Survey+Analytics)
+#### Employee Survey Interface
+![Survey](Survey.png)
+*Interactive survey interface with star ratings, multiple choice questions, and progress tracking*
+
+#### Survey Analytics Dashboard
+![Analytics](dashboard.png)
+*Real-time analytics dashboard showing engagement metrics, satisfaction rates, and detailed insights*
 
 ## 🔧 Configuration
 
