@@ -114,7 +114,7 @@ def store_question(question_text, answer_text, status, confidence_score=0.0):
 
         insert_query = '''
             INSERT INTO questions (question_text, answer_text, status, confidence_score, created_at)
-            VALUES (%s, %s, %s, %s, %s) 
+            VALUES (%s, %s, %s, %s, %s)
             RETURNING question_id
         '''
 
@@ -374,14 +374,14 @@ def ask_question():
             question_id = None
 
         # Return response
-        return jsonify({
-            "answers": [final_answer],
-            "confidence_scores": [confidence],
-            "question_id": question_id,
-            "status": status,
-            "session_id": session_id,
-            "rag_sources": rag_sources
-        }), 200
+            return jsonify({
+                "answers": [final_answer],
+                "confidence_scores": [confidence],
+                "question_id": question_id,
+                "status": status,
+                "session_id": session_id,
+                "rag_sources": rag_sources
+            }), 200
 
     except Exception as e:
         logging.error(f"Error in ask_question: {e}")

@@ -108,7 +108,7 @@ const AIChatbot: React.FC = () => {
             content: language === 'ar'
                 ? 'مرحباً! أنا مساعدك الذكي لأسئلة قانون العمل المصري. كيف يمكنني مساعدتك اليوم؟'
                 : 'Hello! I\'m your AI assistant for Egyptian Labour Law questions. How can I help you today?',
-            timestamp: now
+                timestamp: now
         };
 
         setMessages([welcomeMessage]);
@@ -419,7 +419,7 @@ const AIChatbot: React.FC = () => {
                     }
                 }}
             >
-                {/* Header */}
+            {/* Header */}
                 <DialogTitle sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -561,21 +561,21 @@ const AIChatbot: React.FC = () => {
                                     </Box>
                                 </Paper>
                             </Box>
-                        )}
+                )}
 
-                        <div ref={messagesEndRef} />
+                <div ref={messagesEndRef} />
                     </Box>
 
-                    {/* Common Questions */}
+            {/* Common Questions */}
                     {commonQuestions.length > 0 && (
                         <Box sx={{ p: 2, pt: 0 }}>
                             <Typography variant="subtitle2" gutterBottom>
-                                {language === 'ar' ? 'الأسئلة الشائعة:' : 'Common Questions:'}
+                    {language === 'ar' ? 'الأسئلة الشائعة:' : 'Common Questions:'}
                             </Typography>
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                                 {commonQuestions.slice(0, 6).map((question) => (
                                     <Chip
-                                        key={question.id}
+                            key={question.id}
                                         label={question.text}
                                         onClick={() => sendMessage(question.text, true)}
                                         variant="outlined"
@@ -590,7 +590,7 @@ const AIChatbot: React.FC = () => {
 
                 <Divider />
 
-                {/* Input */}
+            {/* Input */}
                 <DialogActions sx={{ p: 2 }}>
                     <TextField
                         ref={inputRef}

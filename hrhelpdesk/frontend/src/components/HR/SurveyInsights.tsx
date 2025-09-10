@@ -560,37 +560,6 @@ const SurveyInsights: React.FC = () => {
                 </ChartCard>
             </Box>
 
-            {/* Department Analytics */}
-            <Box sx={{ mt: 3 }}>
-                <ChartCard
-                    title="Department Performance Overview"
-                    subtitle="Satisfaction scores and response counts by department"
-                    icon={<Users size={20} />}
-                >
-                    <Box sx={{ mb: 2 }}>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                            <strong>Response Distribution:</strong> {Object.keys(surveyData.departmentBreakdown).length} departments participated
-                        </Typography>
-                    </Box>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={surveyData.departmentAnalytics} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                            <XAxis
-                                dataKey="departmentName"
-                                tick={{ fontSize: 12 }}
-                                angle={-45}
-                                textAnchor="end"
-                                height={80}
-                            />
-                            <YAxis yAxisId="left" tick={{ fontSize: 12 }} />
-                            <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 12 }} />
-                            <Tooltip content={<CustomTooltip />} />
-                            <Bar yAxisId="left" dataKey="responseCount" fill="#5A2D82" name="Responses" radius={[4, 4, 0, 0]} />
-                            <Bar yAxisId="right" dataKey="avgSatisfaction" fill="#00B59D" name="Avg Satisfaction" radius={[4, 4, 0, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </ChartCard>
-            </Box>
 
             {/* Improvement Suggestions */}
             <Box sx={{ mt: 3 }}>

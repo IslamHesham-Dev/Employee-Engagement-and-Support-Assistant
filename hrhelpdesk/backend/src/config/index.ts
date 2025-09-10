@@ -15,8 +15,8 @@ export const config = {
     jwtExpiresIn: process.env.JWT_EXPIRES_IN || '24h',
 
     // SendGrid Configuration
-    sendGridApiKey: process.env.SENDGRID_API_KEY || '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',
-    sendGridFromEmail: process.env.SENDGRID_FROM_EMAIL || 'islamhk1234@gmail.com',
+    sendGridApiKey: process.env.SENDGRID_API_KEY || 'your-sendgrid-api-key',
+    sendGridFromEmail: process.env.SENDGRID_FROM_EMAIL || 'your-email@example.com',
     sendGridFromName: process.env.SENDGRID_FROM_NAME || 'iScore HR HelpDesk',
 
     // Email Configuration

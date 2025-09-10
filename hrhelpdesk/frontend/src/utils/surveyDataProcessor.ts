@@ -306,3 +306,4 @@ export function calculateEngagementMetrics(data: ProcessedSurveyData) {
         growthScore
     };
 }
+

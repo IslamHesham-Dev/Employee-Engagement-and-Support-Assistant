@@ -4,7 +4,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-package-lock.json
 
 # Environment variables
 .env
@@ -23,7 +22,6 @@ build/
 # Logs
 logs/
 *.log
-debug-questions.js
 
 # Runtime data
 pids/
@@ -50,14 +48,11 @@ coverage/
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Temporary folders
 tmp/
 temp/
-
-# Uploads and user content
-uploads/
-public/uploads/
 
 # Database
 *.db
@@ -144,26 +139,6 @@ FAQ-Model/
 *.pkl
 *.joblib
 
-# Documentation files (temporary)
-*_FIX.md
-*_UPDATE.md
-*_GUIDE.md
-*_REQUIREMENTS.md
-*_TESTING.md
-*_README.md
-*_SETUP_GUIDE.md
-*_INTEGRATION_GUIDE.md
-*_CLEANUP.md
-*_ERROR_FIX_FINAL.md
-*_CHATBOT_*.md
-*_ROUTER_FIX.md
-*_TABS_CLEANUP.md
-*_SCROLL_UPDATE.md
-*_QUESTION_FIX.md
-*_FEATURES.md
-*_SYSTEM_README.md
-*_NOTIFICATION_TESTING.md
-
 # All markdown files (project cleanup)
 *.md
 
@@ -184,30 +159,11 @@ yarn.lock
 pnpm-lock.yaml
 
 # Editor directories and files
-.vscode/
-.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Desktop.ini
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-*~
 
 # Archive files
 *.zip

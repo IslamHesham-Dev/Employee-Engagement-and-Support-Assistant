@@ -102,6 +102,30 @@ temp/
 *_SYSTEM_README.md
 *_NOTIFICATION_TESTING.md
 
+# All markdown files (project cleanup)
+*.md
+
+# Sensitive data and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+config.json
+secrets.json
+credentials.json
+
+# API keys and tokens
+*api*key*
+*secret*
+*token*
+*credential*
+
+# Database dumps
+*.sql
+*.dump
+*.backup
+
 # Backup files
 *.bak
 *.backup

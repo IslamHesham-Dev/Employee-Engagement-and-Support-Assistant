@@ -48,8 +48,7 @@ logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s | %(levelname)s | %(message)s")
 
 # Set OpenAI API key
-OPENAI_API_KEY = os.getenv(
-    "OPENAI_API_KEY", "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")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "your-openai-api-key")
 if OPENAI_API_KEY:
     openai.api_key = OPENAI_API_KEY
     print("✅ OpenAI API key set")
@@ -314,7 +313,7 @@ class RAGPipeline:
         """Build prompt for OpenAI with retrieved context"""
         parts, total = [], 0
         for score, m in retrieved:
-            block = f"\n[Source: {m['url']} | Section: {m.get('section','')}] Score={score:.3f}\n{m['text']}\n"
+            block = f"\n[Source: {m['url']} | Section: {m.get('section', '')}] Score={score:.3f}\n{m['text']}\n"
             if total + len(block) > MAX_CONTEXT_CHARS:
                 break
             parts.append(block)

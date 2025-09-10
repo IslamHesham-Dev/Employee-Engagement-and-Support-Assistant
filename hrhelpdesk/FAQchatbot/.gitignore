@@ -33,6 +33,28 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Sensitive data and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+config.json
+secrets.json
+credentials.json
+
+# API keys and tokens
+*api*key*
+*secret*
+*token*
+*credential*
+
+# All markdown files (project cleanup)
+*.md
+
+# Jupyter notebooks (if containing sensitive data)
+*.ipynb
+
 # vercel
 .vercel
 
