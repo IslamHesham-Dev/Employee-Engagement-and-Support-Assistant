@@ -221,3 +221,4 @@ credentials.json
 
 # Jupyter notebooks (if containing sensitive data)
 *.ipynb
+
