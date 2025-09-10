@@ -212,27 +212,23 @@ python chatbot_service.py
 ### 🖼️ Screenshots
 
 #### Login Interface
-![Login](login.png)
+![Login](/hrhelpdesk/screenshots/login.png)
 *Clean and modern login interface with iScore branding*
 
-#### Employee Management Dashboard
-![Dashboard](dashboard.png)
-*Comprehensive HR dashboard with employee management, survey management, and analytics tabs*
-
 #### Add New Employee Modal
-![Add Employee](Add%20Employee.png)
+![Add Employee](/hrhelpdesk/screenshots/Add%20Employee.png)
 *Streamlined employee creation interface with required fields and validation*
 
 #### AI Chatbot Interface
-![Chatbot](Chatbot.PNG)
+![Chatbot](/hrhelpdesk/screenshots/Chatbot.PNG)
 *AI-powered chatbot with Egypt Labour Law knowledge, confidence scoring, and source citations*
 
 #### Employee Survey Interface
-![Survey](Survey.png)
+![Survey](/hrhelpdesk/screenshots/Survey.png)
 *Interactive survey interface with star ratings, multiple choice questions, and progress tracking*
 
 #### Survey Analytics Dashboard
-![Analytics](dashboard.png)
+![Analytics](/hrhelpdesk/screenshots/dashboard.png)
 *Real-time analytics dashboard showing engagement metrics, satisfaction rates, and detailed insights*
 
 ## 🔧 Configuration
